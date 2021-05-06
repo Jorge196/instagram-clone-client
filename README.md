@@ -15,3 +15,5 @@ Clear out the boilerplate from 'create-react-app',
 -Remove all references of removed files in index.js and App.js
 -Clear out App component as well
 -Run `yarn start` to make sure server starts up with empty screen.
+
+-Now add routes. 

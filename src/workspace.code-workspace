@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "../../../my-app/eventfull-api"
+		},
+		{
+			"path": ".."
+		}
+	],
+	"remoteAuthority": "wsl+Ubuntu",
+	"settings": {}
+}

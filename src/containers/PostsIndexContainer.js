@@ -8,15 +8,21 @@ export default class PostsIndexContainer extends Component {
     }
 
     componentDidMount() {
-        setTimeout(() =>{
-            this.setState({
-                posts: [
-                    {id:1, name: 'Instagram post'},
-                    {id:2, name: 'Another instagram post'}
-                ],
+        fetch('http://localhost:3001/posts', {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(postsJson => {
+            console.log('posts', postsJson)
+            this.setState({ 
+                posts: postsJson,
                 loading: false
-            });
-        }, 1000)
+            })
+        })
     }
 
     render(){

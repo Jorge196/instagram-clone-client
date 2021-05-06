@@ -1,15 +1,17 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom";
-import PostsIndexContainer from "./containers/PostsIndexContainer"
-import PostFormContainer from "./containers/PostFormContainer"
+import PostsIndexContainer from "./containers/PostsIndexContainer";
+import PostFormContainer from "./containers/PostFormContainer";
 
-function App() {
+function App(){
   return (
     <div className="App">
       <Router>
         <nav className="text-center bg-purple-600 text-yellow-500 p-4">
           <NavLink 
             className="inline-block px-4 py-2" 
+            activeClassName="text-yellow-300"
+            exact
             to="/"
           >
             Posts
@@ -17,7 +19,6 @@ function App() {
           <NavLink 
             className="inline-block px-4 py-2" 
             activeClassName="text-yellow-300"
-            exact
             to="/posts/new"
           >
             New Post
@@ -27,7 +28,8 @@ function App() {
           <Route exact path="/">
             <PostsIndexContainer />
           </Route>
-          <Route path="/posts/new">New Post</Route>
+          <Route path="/posts/new" render={(routerProps) => <PostFormContainer anotherProp="myProp" {... routerProps}/>}>
+          </Route>
         </Switch>
       </Router>
     </div>

@@ -2,6 +2,8 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom";
 import PostsIndexContainer from "./containers/PostsIndexContainer";
 import PostFormContainer from "./containers/PostFormContainer";
+import NewCommentContainer from "./containers/NewCommentContainer";
+import PostShowContainer from "./containers/PostShowContainer";
 
 function App(){
   return (
@@ -28,8 +30,18 @@ function App(){
           <Route exact path="/">
             <PostsIndexContainer />
           </Route>
-          <Route path="/posts/new" render={(routerProps) => <PostFormContainer anotherProp="myProp" {... routerProps}/>}>
-          </Route>
+          <Route 
+            path="/posts/new" 
+            component={PostFormContainer} 
+          />
+          <Route 
+            path="/posts/:postId/comments/new" 
+            component={NewCommentContainer} 
+          />
+          <Route 
+            path="/posts/:postId" 
+            component={PostShowContainer} 
+          />
         </Switch>
       </Router>
     </div>

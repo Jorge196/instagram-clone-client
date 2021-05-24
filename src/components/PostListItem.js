@@ -7,6 +7,6 @@ const PostListItem = ({ post }) => {
             <Link to={`/posts/${post.id}`}>{post.name}</Link>
         </li> 
     );
-}
+} 
 
 export default PostListItem

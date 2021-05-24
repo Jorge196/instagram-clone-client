@@ -11,7 +11,7 @@ function App(){
       <Router>
         <nav className="text-center bg-purple-600 text-yellow-500 p-4">
           <NavLink 
-            className="inline-block px-4 py-2" 
+            className="inline-block hover:text-yellow-400 px-4 py-2" 
             activeClassName="text-yellow-300"
             exact
             to="/"
@@ -19,7 +19,7 @@ function App(){
             Posts
           </NavLink>
           <NavLink 
-            className="inline-block px-4 py-2" 
+            className="inline-block hover:text-yellow-400 px-4 py-2" 
             activeClassName="text-yellow-300"
             to="/posts/new"
           >

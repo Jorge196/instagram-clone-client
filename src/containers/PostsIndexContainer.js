@@ -1,35 +1,43 @@
 import React, { Component } from 'react'
+import { connect } from "react-redux";
+import { fetchPosts } from "../actions/posts";
 import PostsList from '../components/PostsList'
 
-export default class PostsIndexContainer extends Component {
-    state = {
-        posts: [],
-        loading: true 
-    }
+class PostsIndexContainer extends Component {
 
     componentDidMount() {
-        fetch('http://localhost:3001/posts', {
-            method: 'get',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(res => res.json())
-        .then(postsJson => {
-            console.log('posts', postsJson)
-            this.setState({ 
-                posts: postsJson,
-                loading: false
-            })
-        })
+        this.props.dispatchFetchPosts();
     }
 
     render(){
+        if(this.props.loadingState === "notStarted") {
+            return null
+        }
+
         return (
             <section className="max-w-6xl w-11/12 mx-auto mt-16">
-                {this.state.loading ? 'loading spinner' : <PostsList posts={this.state.posts} /> }
+                {this.props.loadingState === "inProgress" ? (
+                    "loading spinner"
+                ): (
+                 <PostsList posts={this.props.posts} /> 
+                )}
             </section>
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        posts: state.posts.list,
+        loadingState: state.posts.loadingState
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        dispatchFetchPosts: () => dispatch(fetchPosts())
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostsIndexContainer)

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class PostForm extends React.Component {
+export default class PostForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();

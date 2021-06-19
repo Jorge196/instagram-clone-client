@@ -1,23 +1,28 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from "react-redux";
+import { createPost } from "../actions/posts";
+class PostFormContainer extends Component {
 
-export default class PostForm extends Component {
+    state = {
+        errors: {},
+    };
 
     handleSubmit = (e) => {
         e.preventDefault();
         const form = e.target;
-        const body = new FormData();
+        const formData = new FormData();
 
-        body.append("post[name]", form.name.value);
-        body.append("post[picture]", form.picture.files[0], form.picture.value);
+        formData.append("post[name]", form.name.value);
+        formData.append("post[picture]", form.picture.files[0], form.picture.value);
 
-        fetch('http://localhost:3001/posts', {
-            method: 'POST', 
-            body
-        }) 
-        .then(res => res.json())
-        .then(postJson => {
-            this.props.history.push('/')
-        })
+        this.props
+            .dispatchCreatePost(formData)
+            .then((postJson) => {
+                this.props.history.push('/')
+            })
+            .catch((errors) => {
+                this.setState({ errors });
+            });
         
     }
 
@@ -59,3 +64,17 @@ export default class PostForm extends Component {
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return{
+
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return{
+        dispatchCreatePost: (formData) => dispatch(createPost(formData)),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostFormContainer);

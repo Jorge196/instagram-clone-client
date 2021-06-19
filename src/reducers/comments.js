@@ -1,6 +1,7 @@
 import { 
     SUCCESSFULLY_LOADED_POST_COMMENTS,
-    START_LOADING_POST
+    START_LOADING_POST,
+    SUCCESSFULLY_CREATED_COMMENT    
 } from '../actions';
 
 const initialState = {
@@ -22,8 +23,14 @@ export default function commentReducer(state = initialState,
                         ...state.postsLoaded, 
                         [action.payload.post.id]: "successful",
                     },
-                    list: state.list.concat(action.payload.comments),
+                    list: state.list.filter((comment) => comment.post_id !== action.payload.post.id).concat(action.payload.comments),
                 };
+
+            case SUCCESSFULLY_CREATED_COMMENT:
+                return {
+                    ...state, 
+                    list: state.list.concat(action.payload)
+                }
             default:
                 return state;
         }

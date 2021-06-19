@@ -3,6 +3,8 @@ import {
     START_LOADING_POST,
     SUCCESSFULLY_LOADED_POSTS,
     SUCCESSFULLY_LOADED_POST_COMMENTS,
+    SUCCESSFULLY_CREATED_POST,
+    ERROR_CREATING_POST,
 } from '.'
 export const fetchPosts = () => {
     return (dispatch) => {
@@ -37,3 +39,25 @@ export const fetchPost = (postId) => {
         });
     };
 };
+
+export const createPost = (formData) => {
+    return (dispatch) => {
+        return fetch(`http://localhost:3001/posts`, {
+            method: 'POST',
+            body: formData
+        })
+        .then(res => {
+            if (res.ok) {
+                return res.json()
+            } else {
+                return res.json().then(errors => Promise.reject(errors))
+            }
+        })
+        .then(postJson => {
+            dispatch({
+                type: SUCCESSFULLY_CREATED_POST,
+                payload: postJson
+            })
+        })
+    }
+}

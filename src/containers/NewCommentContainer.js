@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
+import { connect } from "react-redux";
+import { createComment } from "../actions/comments"
 
-export default class NewCommentContainer extends Component {
+class NewCommentContainer extends Component {
 
     state = {
-        name: '',
-        description: '',
-        created_at: ''
+        name: "",
+        description: "",
+        created_at: "", 
+        error: {}
     };
 
     handleChange = (e) => {
@@ -16,32 +19,23 @@ export default class NewCommentContainer extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        fetch('http://localhost:3001/comments', {
-            method: 'POST', 
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({comment: {
-                post_id: this.props.match.params.postId,
-                description: this.state.description,
-                created_at: this.state.created_at,
-                name: this.state.name,
-            }})
+        this.props.dispatchCreateComment({
+            name: this.state.name,
+            description: this.state.description,
+            created_at: this.state.created_at})
+            .then(commentJson => {
+                this.props.history.push(`/posts/${this.props.match.params.postId}`);
+            })
+        .catch(errors => {
+            this.setState({ errors })
         })
-        .then(res => res.json())
-        .then(commentJson => {
-            this.props.history.push(`/posts/${this.props.match.params.postId}`);
-        })
-
-    }
+    };
 
     render() {
         return (
             <form onSubmit={this.handleSubmit} className="max-w-6xl w-3/4 mx-auto mt-16 shadow-lg px-8 py-6">
                 <h1 className="text-3xl text-center font-semibold mb-8">New Comment</h1>
                 <fieldset>
-                    <label className="block uppercase">Name</label>
                     <input 
                         type="text" 
                         name="name"
@@ -75,3 +69,12 @@ export default class NewCommentContainer extends Component {
         )
     }
 }
+
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        dispatchCreateComment: (formData) => dispatch(createComment(formData))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(NewCommentContainer);

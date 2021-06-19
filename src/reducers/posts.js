@@ -1,10 +1,10 @@
 import { 
-    ADD_POST, 
     START_LOADING_POSTS,
-    START_LOADING_POST, 
     SUCCESSFULLY_LOADED_POSTS, 
     FAILED_LOADING_POSTS, 
     SUCCESSFULLY_LOADED_POST_COMMENTS,
+    SUCCESSFULLY_CREATED_POST,
+    ERROR_CREATING_POST
     
 } from '../actions';
 const initialState = {
@@ -31,6 +31,16 @@ export default function postsReducer(state = initialState, action) {
                     ...state, 
                     list: state.list.concat(action.payload.post)
                 }
+            }
+        case SUCCESSFULLY_CREATED_POST:
+            return{
+                ...state, 
+                list: state.list.concat(action.payload)
+            }
+        case ERROR_CREATING_POST: 
+            return {
+                ...state, 
+                errors: action.payload
             }
         default:     
         return state;

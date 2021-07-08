@@ -37,6 +37,9 @@ export default function postsReducer(state = initialState, action) {
                 ...state, 
                 list: state.list.concat(action.payload)
             }
+
+        default:
+            return state;
         
     }
    

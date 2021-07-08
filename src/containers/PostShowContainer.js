@@ -45,8 +45,8 @@ const mapStateToProps = (state, { match }) => {
     const postId = match.params.postId
     let loadingState = state.comments.postsLoaded[postId] || "notStarted"
     return {
-        post: state.posts.list.find(post => post.id === postId),
-        comments: state.comments.list.filter(comment => comment.post_id === postId),
+        post: state.posts.list.find(post => post.id == postId),
+        comments: state.comments.list.filter(comment => comment.post_id == postId),
         loadingState
     };
 };

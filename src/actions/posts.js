@@ -4,7 +4,6 @@ import {
     SUCCESSFULLY_LOADED_POSTS,
     SUCCESSFULLY_LOADED_POST_COMMENTS,
     SUCCESSFULLY_CREATED_POST,
-    ERROR_CREATING_POST,
 } from '.'
 export const fetchPosts = () => {
     return (dispatch) => {

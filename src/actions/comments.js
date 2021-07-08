@@ -1,5 +1,9 @@
 import { SUCCESSFULLY_CREATED_COMMENT } from '.'
 export const createComment = (formData) => {
+        const comment = {
+            comment: formData          
+        }
+   
     return (dispatch) => {
         return fetch('http://localhost:3001/comments', {
             method: 'POST', 
@@ -7,7 +11,7 @@ export const createComment = (formData) => {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({comment: formData})
+            body: JSON.stringify(comment)
         })
         .then(res => {
             if (res.ok) {
@@ -22,6 +26,5 @@ export const createComment = (formData) => {
                 payload: commentJson
             });
         })
-
     }
 }

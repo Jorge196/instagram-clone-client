@@ -29,7 +29,7 @@ class PostShowContainer extends Component {
                 <button className="bg-purple-400 rounded-lg border-2 border-yellow-400 hover:bg-indigo-700 hover:border-red-600 my-2"><Link to={`/posts/${this.props.post.id}/comments/new`}> Add comment</Link></button>
                 <div className="grid grid-cols-3 gap-4">
                     {this.props.comments.map((comment) => (
-                        <figure className="p-4 shadow bg-yellow-100 rounded-lg">
+                        <figure key={comment.id} className="p-4 shadow bg-yellow-100 rounded-lg">
                             <h3 className="font-bold">{comment.name}</h3>
                             <p>{comment.description}</p>
                             <p>{comment.created_at}</p>
@@ -45,8 +45,8 @@ const mapStateToProps = (state, { match }) => {
     const postId = match.params.postId
     let loadingState = state.comments.postsLoaded[postId] || "notStarted"
     return {
-        post: state.posts.list.find(post => post.id == postId),
-        comments: state.comments.list.filter(comment => comment.post_id == postId),
+        post: state.posts.list.find(post => post.id === postId),
+        comments: state.comments.list.filter(comment => comment.post_id === postId),
         loadingState
     };
 };

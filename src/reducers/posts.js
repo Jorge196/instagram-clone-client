@@ -4,7 +4,7 @@ import {
     FAILED_LOADING_POSTS, 
     SUCCESSFULLY_LOADED_POST_COMMENTS,
     SUCCESSFULLY_CREATED_POST,
-    ERROR_CREATING_POST
+    
     
 } from '../actions';
 const initialState = {
@@ -23,7 +23,7 @@ export default function postsReducer(state = initialState, action) {
                 loadingState: 'successful'
             };
         case SUCCESSFULLY_LOADED_POST_COMMENTS:
-            const foundPost = state.list.find(post => post.id == action.payload.post.id)
+            const foundPost = state.list.find(post => post.id === action.payload.post.id)
             if(foundPost){
                 return state
             } else{
@@ -37,13 +37,7 @@ export default function postsReducer(state = initialState, action) {
                 ...state, 
                 list: state.list.concat(action.payload)
             }
-        case ERROR_CREATING_POST: 
-            return {
-                ...state, 
-                errors: action.payload
-            }
-        default:     
-        return state;
+        
     }
    
 }

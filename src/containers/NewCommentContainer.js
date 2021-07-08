@@ -48,12 +48,12 @@ class NewCommentContainer extends Component {
                         onChange={this.handleChange}
                         value={this.state.name}
                         placeholder="Comment title"
-                        className="w-full border border-2 p-4 my-4" 
+                        className={`w-full border-2 focus:outline-none focus:ring-2 p-4 mb-4 ${this.state.errors.name && 'focus:ring-red-400' }`}
                     />
                 </fieldset>
                 <fieldset>
                     <p className="h-8 pl-4 text-red-400">{this.state.errors.description}</p>
-                    <textarea className="w-full border border-2" 
+                    <textarea className={`w-full border-2 focus:outline-none focus:ring-2 p-4 mb-4 ${this.state.errors.description && 'focus:ring-red-400' }`}
                         name="description" 
                         onChange={this.handleChange}
                         value={this.state.description}

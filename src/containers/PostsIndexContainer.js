@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
-import { fetchPosts } from "../actions/posts";
 import PostsList from '../components/PostsList'
 
 class PostsIndexContainer extends Component {
 
-    componentDidMount() {
-        this.props.dispatchFetchPosts();
-    }
+    // componentDidMount() {
+    //     this.props.dispatchFetchPosts();
+    // }
 
     render(){
         if(this.props.loadingState === "notStarted") {
@@ -33,11 +32,7 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        dispatchFetchPosts: () => dispatch(fetchPosts())
-    }
-}
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostsIndexContainer)
+
+export default connect (mapStateToProps)(PostsIndexContainer)

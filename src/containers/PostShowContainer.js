@@ -9,19 +9,27 @@ class PostShowContainer extends Component {
         loading: true 
     }
 
-    componentDidMount() {
-        const postId = this.props.match.params.postId
-        this.props.dispatchFetchPost(postId);
-    }
+    // componentDidMount() {
+    //     const postId = this.props.match.params.postId
+    //     this.props.dispatchFetchPost(postId);
+    // }
+    
     
     render() {
-        if (this.props.loadingState !== "successful") {
-            return <div>Loading Spinner</div>
-        }
+        console.log(this.props)
+        // if (this.props.loadingState !== "successful") {
+        //     return <div>Loading Spinner</div>
+        // }
+        const postId = this.props.match.params.postId
+
+        // if ( this.state.posts.list.find(post => post.id === parseInt(postId, 10)) !== undefined) {
+        //     return <div>hang in there, we'll show your post ASAP</div>
+        // }
+
         return (
             <section className="max-w-6xl w-11/12 mx-auto mt-16">
                 <div className=" mx-auto mt-16">
-                   <img className="object-contain w-3/5" alt={this.props.post.name} src={this.props.post.picture_url}/>
+                   <img className="object-contain w-3/5" alt={this.props.posts.name} src={this.props.posts.picture_url}/>
                 </div>
                 <h1 className="text-3xl font-bold text-left mb-8 ">
                     {this.props.post.name} 
@@ -37,16 +45,19 @@ class PostShowContainer extends Component {
                     ))}
                 </div>
             </section>
-        )
+        );
     }
 }
 
 const mapStateToProps = (state, { match }) => {
     const postId = match.params.postId
     let loadingState = state.comments.postsLoaded[postId] || "notStarted"
+    console.log(state.posts)
     return {
-        post: state.posts.list.find(post => post.id == postId),
-        comments: state.comments.list.filter(comment => comment.post_id == postId),
+        // posts: state.posts.list.find(post => post.id === parseInt(postId, 10)),
+        posts: state.posts.list, 
+
+        comment: state.comments.list.filter(comment => comment.post_id == postId),
         loadingState
     };
 };

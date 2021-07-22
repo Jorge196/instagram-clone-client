@@ -13,7 +13,8 @@ class PostFormContainer extends Component {
         const formData = new FormData();
 
         formData.append("post[name]", form.name.value);
-        formData.append("post[picture]", form.picture.files[0], form.picture.value);
+        form.picture.files[0] &&
+            formData.append("post[picture]", form.picture.files[0], form.picture.value);
 
         this.props
             .dispatchCreatePost(formData)
@@ -36,17 +37,21 @@ class PostFormContainer extends Component {
                 <fieldset className="">
                     <label htmlFor="name" className="block uppercase">
                         Name
+                        <span className="text-red-400">{this.state.errors.name}</span>
                     </label>
                     <input 
                         type="text"
                         name="name" 
                         id="name" 
                         placeholder="Caption your post"
-                        className="w-full border p-4 my-4"
+                        className={`w-full border p-4 my-4 focus:outline-none focus:ring-2 ${this.state.errors.name && "focus:ring-red-400 border-red-400"}`}
                     />
                 </fieldset>
                 <fieldset className="">
-                    <label htmlFor="picture" className="block uppercase">Picture</label>
+                    <label htmlFor="picture" className="block uppercase">
+                        Picture
+                        <span className="text-red-400">{this.state.errors.picture}</span>
+                    </label>
                     <input 
                         type="file" 
                         className="w-full my-4"
@@ -65,11 +70,6 @@ class PostFormContainer extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return{
-
-    }
-}
 
 const mapDispatchToProps = (dispatch) => {
     return{
@@ -77,4 +77,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostFormContainer);
+export default connect(null, mapDispatchToProps)(PostFormContainer);

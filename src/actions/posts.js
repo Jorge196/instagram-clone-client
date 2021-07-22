@@ -15,7 +15,7 @@ export const fetchPosts = () => {
                 'Content-Type': 'application/json'
             }
         })
-        .then(res => res.json())
+        .then((res) => res.json())
         .then(postsJson => {
            dispatch({
                type: SUCCESSFULLY_LOADED_POSTS,
@@ -27,9 +27,9 @@ export const fetchPosts = () => {
 
 export const fetchPost = (postId) => {
     return (dispatch) => {
-        dispatch({type: START_LOADING_POST, payload: postId})
+        dispatch({ type: START_LOADING_POST, payload: postId })
         fetch(`http://localhost:3001/posts/${postId}`)
-        .then(res => res.json())
+        .then((res) => res.json())
         .then((postCommentsJson) => {
           dispatch({
               type: SUCCESSFULLY_LOADED_POST_COMMENTS,

@@ -6,10 +6,6 @@ import NewCommentContainer from "./containers/NewCommentContainer";
 import PostShowContainer from "./containers/PostShowContainer";
 import { fetchPosts } from "./actions/posts";
 import { connect } from "react-redux";
-
-
-
-
 class App extends Component {
   
   componentDidMount() {

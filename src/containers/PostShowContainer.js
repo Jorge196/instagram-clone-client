@@ -16,11 +16,6 @@ class PostShowContainer extends Component {
     
     
     render() {
-        console.log(this.props)
-        if (this.props.loadingState !== "successful") {
-            return <div>Loading Spinner</div>
-        }
-
         return (
             <section className="max-w-6xl w-11/12 mx-auto mt-16">
                 <div className=" mx-auto mt-16">
@@ -45,15 +40,9 @@ class PostShowContainer extends Component {
 }
 
 const mapStateToProps = (state, { match }) => {
-    const postId = match.params.postId
-    let loadingState = state.comments.postsLoaded[postId] || "notStarted"
-    console.log(state.posts.list)
     return {
-        // posts: state.posts.list.find(post => post.id === parseInt(postId, 10)),
-        post: state.posts.list.find(post => post.id === parseInt(postId, 10)), 
-
-        comments: state.comments.list.filter(comment => comment.post_id == postId),
-        loadingState
+        post: state.currentPost.post,
+        comments: state.currentPost.comments,
     };
 };
 

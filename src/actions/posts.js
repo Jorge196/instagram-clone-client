@@ -1,10 +1,11 @@
 import {
     START_LOADING_POSTS,
     START_LOADING_POST,
+    SUCCESSFULLY_LOADED_POST,
     SUCCESSFULLY_LOADED_POSTS,
-    SUCCESSFULLY_LOADED_POST_COMMENTS,
     SUCCESSFULLY_CREATED_POST,
 } from '.'
+
 export const fetchPosts = () => {
     return (dispatch) => {
         dispatch({type: START_LOADING_POSTS})
@@ -32,7 +33,7 @@ export const fetchPost = (postId) => {
         .then((res) => res.json())
         .then((postCommentsJson) => {
           dispatch({
-              type: SUCCESSFULLY_LOADED_POST_COMMENTS,
+              type: SUCCESSFULLY_LOADED_POST,
               payload: postCommentsJson
           })
         });

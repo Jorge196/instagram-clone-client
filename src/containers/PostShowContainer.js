@@ -39,7 +39,7 @@ class PostShowContainer extends Component {
     }
 }
 
-const mapStateToProps = (state, { match }) => {
+const mapStateToProps = (state) => {
     return {
         post: state.currentPost.post,
         comments: state.currentPost.comments,

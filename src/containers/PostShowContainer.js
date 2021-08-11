@@ -16,6 +16,7 @@ class PostShowContainer extends Component {
     
     
     render() {
+        
         return (
             <section className="max-w-6xl w-11/12 mx-auto mt-16">
                 <div className=" mx-auto mt-16">

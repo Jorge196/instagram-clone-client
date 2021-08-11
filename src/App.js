@@ -6,6 +6,7 @@ import NewCommentContainer from "./containers/NewCommentContainer";
 import PostShowContainer from "./containers/PostShowContainer";
 import { fetchPosts } from "./actions/posts";
 import { connect } from "react-redux";
+import requireAuth from './components/requiresAuth';
 class App extends Component {
   
   componentDidMount() {
@@ -33,6 +34,13 @@ class App extends Component {
             </NavLink>
           </nav>
           <Switch>
+            <Route path="">
+              <Route path="/signin" component={SignIn}/>
+              <Route path="/app" component={requireAuth(App)}>
+                <Route name="dashboard" path="dashboard" component={Dashboard} />
+                <Route name="profile" path="profile" component={UserProfile} />
+              </Route>
+            </Route>
             <Route exact path="/">
               <PostsIndexContainer />
             </Route>

@@ -4,9 +4,6 @@ import PostsList from '../components/PostsList'
 
 class PostsIndexContainer extends Component {
 
-    // componentDidMount() {
-    //     this.props.dispatchFetchPosts();
-    // }
 
     render(){
         if(this.props.loadingState === "notStarted") {

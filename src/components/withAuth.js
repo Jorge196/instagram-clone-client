@@ -13,7 +13,6 @@ function withAuth(WrappedComponent) {
     }
 
     render() {
-      console.log("rendered with props:", this.props);
       if (!this.props.authChecked) {
         return "loading...";
       } else if (!this.props.loggedIn) {

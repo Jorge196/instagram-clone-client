@@ -14,3 +14,8 @@ export const FAILED_LOADING_POSTS = "FAILED_LOADING_POSTS"; //not happening yet
 
 // comments
 export const SUCCESSFULLY_CREATED_COMMENT = "SUCCESSFULLY_CREATED_COMMENT";
+
+// authentication
+
+export const AUTHENTICATED = "AUTHENTICATED";
+export const NOT_AUTHENTICATED = "NOT_AUTHENTICATED";

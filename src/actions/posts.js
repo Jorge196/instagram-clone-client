@@ -6,6 +6,8 @@ import {
     SUCCESSFULLY_CREATED_POST,
 } from '.'
 
+import { getToken } from '../actions/auth';
+
 export const fetchPosts = () => {
     return (dispatch) => {
         dispatch({type: START_LOADING_POSTS})
@@ -13,7 +15,8 @@ export const fetchPosts = () => {
             method: 'get',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': getToken()
             }
         })
         .then((res) => res.json())
@@ -29,7 +32,13 @@ export const fetchPosts = () => {
 export const fetchPost = (postId) => {
     return (dispatch) => {
         dispatch({ type: START_LOADING_POST, payload: postId })
-        fetch(`http://localhost:3001/posts/${postId}`)
+        fetch(`http://localhost:3001/posts/${postId}`,
+            {
+                method: 'GET',
+                headers: {
+                'Authorization': getToken()
+                }
+        })
         .then((res) => res.json())
         .then((postCommentsJson) => {
           dispatch({
@@ -44,7 +53,10 @@ export const createPost = (formData) => {
     return (dispatch) => {
         return fetch(`http://localhost:3001/posts`, {
             method: 'POST',
-            body: formData
+            body: formData,
+            headers: {
+                'Authorization': getToken()
+            }
         })
         .then(res => {
             if (res.ok) {

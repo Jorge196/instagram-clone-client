@@ -31,7 +31,7 @@ class PostShowContainer extends Component {
                         <figure key={comment.id} className="p-4 shadow bg-yellow-100 rounded-lg">
                             <h3 className="font-bold">{comment.name}</h3>
                             <p>{comment.description}</p>
-                            <p>{comment.created_at}</p>
+                            {/* <p>{comment.created_at}</p> */}
                         </figure>
                     ))}
                 </div>

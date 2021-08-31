@@ -33,7 +33,7 @@ class Login extends React.Component {
         <h1 className='font-bold text-3xl'>Log In</h1>
         <p className="h-8 text-red-400">{this.state.error && "Invalid email or password"}</p>
         <fieldset>
-          <label className='block uppercase mb-2' for='email'>
+          <label className='block uppercase mb-2' forhtml='email'>
             Email:
           </label>
           <input
@@ -46,7 +46,7 @@ class Login extends React.Component {
           />
         </fieldset>
         <fieldset>
-          <label className='block uppercase mb-2' for='password'>
+          <label className='block uppercase mb-2' forhtml='password'>
             Password:
           </label>
           <input

@@ -19,7 +19,7 @@ export default function authReducer(state = initialState, action) {
       return {
         authChecked: true,
         loggedIn: false,
-        currentUser: {}
+        currentUser: null
       };
     default:
       return state;

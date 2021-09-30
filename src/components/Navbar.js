@@ -5,9 +5,6 @@ import Logout from "./auth/Logout";
 import { checkAuth } from "../actions/auth";
 
 class Navbar extends React.Component {
-  componentDidMount() {
-    // this.props.dispatchCheckAuth();
-  }
 
   renderAuthLinks() {
     const { loggedIn, currentUser } = this.props;
